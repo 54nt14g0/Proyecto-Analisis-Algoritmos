@@ -10,7 +10,7 @@ def guardar_matriz(matriz, nombre_archivo):
     np.savetxt(nombre_archivo, matriz, fmt='%d')
     print(f"Matriz guardada en {nombre_archivo}")
 
-# Función para generar y guardar 8 matrices de prueba en la ruta especificada
+# Función para generar y guardar 10 pares de matrices de prueba en la ruta especificada
 def generar_casos_prueba():
     # Lista de tamaños de matrices (n donde n es múltiplo de 2n)
     tamanos = [2, 4, 8, 16, 32, 64, 128, 256]
@@ -24,9 +24,16 @@ def generar_casos_prueba():
     
     # Generar y guardar cada matriz de prueba
     for n in tamanos:
-        matriz = generar_matriz(n)
-        nombre_archivo = os.path.join(ruta_guardado, f"matriz_{n}x{n}.txt")
-        guardar_matriz(matriz, nombre_archivo)
+        # Generar dos matrices para cada tamaño
+        matriz_a = generar_matriz(n)
+        matriz_b = generar_matriz(n)
+
+        # Guardar las matrices en archivos
+        nombre_archivo_a = os.path.join(ruta_guardado, f"matriz_a_{n}x{n}.txt")
+        nombre_archivo_b = os.path.join(ruta_guardado, f"matriz_b_{n}x{n}.txt")
+        
+        guardar_matriz(matriz_a, nombre_archivo_a)
+        guardar_matriz(matriz_b, nombre_archivo_b)
 
 # Ejecutar la generación de matrices de prueba
 generar_casos_prueba()

@@ -1,0 +1,80 @@
+Naive on Array para tamaño 2x2: 0.000000 segundos
+Naive Loop Unrolling Two para tamaño 2x2: 0.000000 segundos
+Naive Loop Unrolling Four para tamaño 2x2: 0.000000 segundos
+Winograd Original para tamaño 2x2: 0.000000 segundos
+Winograd Scaled para tamaño 2x2: 0.007070 segundos
+Strassen Naive para tamaño 2x2: 0.000000 segundos
+Strassen Winograd para tamaño 2x2: 0.000000 segundos
+Block Matrix Mult III.3 para tamaño 2x2: 0.000000 segundos
+Block Matrix Mult IV.3 para tamaño 2x2: 0.000000 segundos
+Block Matrix Mult V.3 para tamaño 2x2: 0.006969 segundos
+Naive on Array para tamaño 4x4: 0.000000 segundos
+Naive Loop Unrolling Two para tamaño 4x4: 0.000000 segundos
+Naive Loop Unrolling Four para tamaño 4x4: 0.000000 segundos
+Winograd Original para tamaño 4x4: 0.000000 segundos
+Winograd Scaled para tamaño 4x4: 0.005203 segundos
+Strassen Naive para tamaño 4x4: 0.007285 segundos
+Strassen Winograd para tamaño 4x4: 0.000000 segundos
+Block Matrix Mult III.3 para tamaño 4x4: 0.000000 segundos
+Block Matrix Mult IV.3 para tamaño 4x4: 0.000000 segundos
+Block Matrix Mult V.3 para tamaño 4x4: 0.000000 segundos
+Naive on Array para tamaño 8x8: 0.000977 segundos
+Naive Loop Unrolling Two para tamaño 8x8: 0.000000 segundos
+Naive Loop Unrolling Four para tamaño 8x8: 0.004317 segundos
+Winograd Original para tamaño 8x8: 0.000000 segundos
+Winograd Scaled para tamaño 8x8: 0.000000 segundos
+Strassen Naive para tamaño 8x8: 0.000000 segundos
+Strassen Winograd para tamaño 8x8: 0.002958 segundos
+Block Matrix Mult III.3 para tamaño 8x8: 0.000000 segundos
+Block Matrix Mult IV.3 para tamaño 8x8: 0.000509 segundos
+Block Matrix Mult V.3 para tamaño 8x8: 0.002122 segundos
+Naive on Array para tamaño 16x16: 0.011739 segundos
+Naive Loop Unrolling Two para tamaño 16x16: 0.000000 segundos
+Naive Loop Unrolling Four para tamaño 16x16: 0.006518 segundos
+Winograd Original para tamaño 16x16: 0.000000 segundos
+Winograd Scaled para tamaño 16x16: 0.000000 segundos
+Strassen Naive para tamaño 16x16: 0.018723 segundos
+Strassen Winograd para tamaño 16x16: 0.020103 segundos
+Block Matrix Mult III.3 para tamaño 16x16: 0.003507 segundos
+Block Matrix Mult IV.3 para tamaño 16x16: 0.009547 segundos
+Block Matrix Mult V.3 para tamaño 16x16: 0.004981 segundos
+Naive on Array para tamaño 32x32: 0.047795 segundos
+Naive Loop Unrolling Two para tamaño 32x32: 0.027309 segundos
+Naive Loop Unrolling Four para tamaño 32x32: 0.034893 segundos
+Winograd Original para tamaño 32x32: 0.000000 segundos
+Winograd Scaled para tamaño 32x32: 0.004506 segundos
+Strassen Naive para tamaño 32x32: 0.108646 segundos
+Strassen Winograd para tamaño 32x32: 0.111654 segundos
+Block Matrix Mult III.3 para tamaño 32x32: 0.048225 segundos
+Block Matrix Mult IV.3 para tamaño 32x32: 0.042973 segundos
+Block Matrix Mult V.3 para tamaño 32x32: 0.056603 segundos
+Naive on Array para tamaño 64x64: 0.369074 segundos
+Naive Loop Unrolling Two para tamaño 64x64: 0.245539 segundos
+Naive Loop Unrolling Four para tamaño 64x64: 0.236981 segundos
+Winograd Original para tamaño 64x64: 0.016054 segundos
+Winograd Scaled para tamaño 64x64: 0.019525 segundos
+Strassen Naive para tamaño 64x64: 0.756088 segundos
+Strassen Winograd para tamaño 64x64: 0.763817 segundos
+Block Matrix Mult III.3 para tamaño 64x64: 0.386695 segundos
+Block Matrix Mult IV.3 para tamaño 64x64: 0.396594 segundos
+Block Matrix Mult V.3 para tamaño 64x64: 0.389362 segundos
+Naive on Array para tamaño 128x128: 2.979300 segundos
+Naive Loop Unrolling Two para tamaño 128x128: 1.905473 segundos
+Naive Loop Unrolling Four para tamaño 128x128: 1.943690 segundos
+Winograd Original para tamaño 128x128: 0.050344 segundos
+Winograd Scaled para tamaño 128x128: 0.074458 segundos
+Strassen Naive para tamaño 128x128: 5.260098 segundos
+Strassen Winograd para tamaño 128x128: 4.015389 segundos
+Block Matrix Mult III.3 para tamaño 128x128: 3.039560 segundos
+Block Matrix Mult IV.3 para tamaño 128x128: 3.070452 segundos
+Block Matrix Mult V.3 para tamaño 128x128: 2.263975 segundos
+Naive on Array para tamaño 256x256: 15.727774 segundos
+Naive Loop Unrolling Two para tamaño 256x256: 11.420563 segundos
+Naive Loop Unrolling Four para tamaño 256x256: 12.305807 segundos
+Winograd Original para tamaño 256x256: 0.214204 segundos
+Winograd Scaled para tamaño 256x256: 0.317378 segundos
+Strassen Naive para tamaño 256x256: 25.055094 segundos
+Strassen Winograd para tamaño 256x256: 24.938078 segundos
+Block Matrix Mult III.3 para tamaño 256x256: 17.628310 segundos
+Block Matrix Mult IV.3 para tamaño 256x256: 17.323398 segundos
+Block Matrix Mult V.3 para tamaño 256x256: 16.731713 segundos
