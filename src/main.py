@@ -45,7 +45,7 @@ def mostrar_mensaje(titulo, mensaje):
 
 # Lista de funciones y sus nombres para el registro
 algoritmos = [
-    (naiv_on_array, "Naive on Array", False),  # No requiere block_size
+    (naiv_on_array, "Naive On Array", False),  # No requiere block_size
     (naiv_loop_unrolling_two, "Naive Loop Unrolling Two", False),  # No requiere block_size
     (naiv_loop_unrolling_four, "Naive Loop Unrolling Four", False),  # No requiere block_size
     (winograd_original, "Winograd Original", False),  # No requiere block_size
@@ -73,8 +73,8 @@ with open(os.path.join(ruta_guardado_tiempos, 'tiempos_ejecucion_python.txt'), '
                 tiempo_ejecucion = medir_tiempo(algoritmo, matriz_a, matriz_b, 16)  # Pasar block_size
             else:
                 tiempo_ejecucion = medir_tiempo(algoritmo, matriz_a, matriz_b)  # Sin block_size
-            f.write(f"{nombre} para tamaño {n}x{n}: {tiempo_ejecucion:.6f} segundos\n")
-            print(f"{nombre} para tamaño {n}x{n}: {tiempo_ejecucion:.6f} segundos")  # Mostrar en consola
+            f.write(f"{nombre} para tamanio {n}x{n}: {tiempo_ejecucion:.6f} segundos\n")
+            print(f"{nombre} para tamanio {n}x{n}: {tiempo_ejecucion:.6f} segundos")  # Mostrar en consola
             
             # Mostrar ventana emergente
             mostrar_mensaje("Algoritmo Completado", f"Se ha completado el algoritmo '{nombre}' para multiplicar matrices de {n}x{n}. ¿Desea continuar con el próximo valor de n?")
