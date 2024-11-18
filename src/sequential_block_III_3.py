@@ -1,24 +1,26 @@
 import numpy as np
 
-def block_matrix_mult_III_3(A, B, block_size):
-    """
-    Implementación del algoritmo III.3 Sequential block
-    Multiplica matrices dividiendo A en bloques horizontales y B en bloques verticales
-    """
-    n = len(A)
-    C = np.zeros((n, n))
+def block_matrix_mult_III_3(matrix_A, matrix_B,block_size):
+    # Obtener las dimensiones de las matrices    
+    rows_A = len(matrix_A)
+    cols_B = len(matrix_B[0])
+    cols_A = len(matrix_A[0])
+            
+    # Inicializar la matriz resultante
+    result = [[0 for _ in range(cols_B)] for _ in range(rows_A)]    
+    # Tamaño de los bloques
+    block_size = min(rows_A, cols_B, cols_A) // 2
+
     
-    for i in range(0, n, block_size):
-        for j in range(0, n, block_size):
-            for k in range(0, n, block_size):
-                # Definir los límites de los bloques
-                i_end = min(i + block_size, n)
-                j_end = min(j + block_size, n)
-                k_end = min(k + block_size, n)
-                
-                # Multiplicar los bloques
-                for ii in range(i, i_end):
-                    for jj in range(j, j_end):
-                        for kk in range(k, k_end):
-                            C[ii][jj] += A[ii][kk] * B[kk][jj]
-    return C
+    # Multiplicar las matrices por bloques
+    for row_block in range(0, rows_A, block_size):
+        for col_block in range(0, cols_B, block_size):
+            for col_A_block in range(0, cols_A, block_size):
+                for row in range(row_block, min(row_block + block_size, rows_A)):
+                    for col in range(col_block, min(col_block + block_size, cols_B)):
+                        for col_A in range(col_A_block, min(col_A_block + block_size, cols_A)):
+                            result[row][col] += matrix_A[row][col_A] * matrix_B[col_A][col]
+    return result
+
+
+

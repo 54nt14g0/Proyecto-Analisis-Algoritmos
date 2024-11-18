@@ -4,7 +4,6 @@ import os
 # Función para generar matrices de tamaño n x n con números de al menos 6 dígitos
 def generar_matriz(n):
     return np.random.randint(100000, 999999, size=(n, n))
-
 # Función para guardar la matriz en un archivo .txt en la ruta especificada
 def guardar_matriz(matriz, nombre_archivo):
     np.savetxt(nombre_archivo, matriz, fmt='%d')
@@ -27,7 +26,6 @@ def generar_casos_prueba():
         # Generar dos matrices para cada tamaño
         matriz_a = generar_matriz(n)
         matriz_b = generar_matriz(n)
-
         # Guardar las matrices en archivos
         nombre_archivo_a = os.path.join(ruta_guardado, f"matriz_a_{n}x{n}.txt")
         nombre_archivo_b = os.path.join(ruta_guardado, f"matriz_b_{n}x{n}.txt")
