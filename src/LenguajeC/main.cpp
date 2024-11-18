@@ -4,7 +4,7 @@
 #include <chrono>
 #include <sstream>
 #include <string>
-#include <iomanip>  // Para setprecision y fixed
+#include <iomanip> // Para setprecision y fixed
 #include "utils.h"
 using namespace std;
 
@@ -20,7 +20,7 @@ vector<vector<int>> read_matrix(const string &filename) {
         stringstream ss(line);
         while (ss >> num) {
             row.push_back(num);
-            if (ss.peek() == ',') ss.ignore();  // Ignora la coma
+            if (ss.peek() == ',') ss.ignore(); // Ignora la coma
         }
         matrix.push_back(row);
     }
@@ -30,7 +30,7 @@ vector<vector<int>> read_matrix(const string &filename) {
 // Función para escribir los tiempos de ejecución en un archivo y mostrar en consola
 void log_execution_time(const string &filename, const string &algorithm, const string &matrix_size, double duration) {
     // Guardar en archivo
-    ofstream outfile(filename, ios::app);  // Abrir en modo de añadir
+    ofstream outfile(filename, ios::app); // Abrir en modo de añadir
     outfile << algorithm << " para tamanio " << matrix_size << ": " 
             << fixed << setprecision(6) << duration << " segundos" << endl;
     
@@ -41,17 +41,18 @@ void log_execution_time(const string &filename, const string &algorithm, const s
 
 // Función para obtener el tamaño de la matriz en formato "NxN"
 string get_matrix_size(const vector<vector<int>>& matrix) {
-    int size = matrix.size();  // Suponiendo que las matrices son cuadradas
+    int size = matrix.size(); // Suponiendo que las matrices son cuadradas
     return to_string(size) + "x" + to_string(size);
 }
 
 // Función para ejecutar todos los algoritmos con diferentes tamaños de matriz
-void execute_algorithms(const vector<string> &matrix_files, const string &tiempos_path) {
-    for (const auto &matrix_file : matrix_files) {
+void execute_algorithms(const vector<string> &matrix_files_a, const vector<string> &matrix_files_b, const string &tiempos_path) {
+    size_t num_files = matrix_files_a.size();
+    for (size_t i = 0; i < num_files; ++i) {
         // Leer la matriz A
-        auto A = read_matrix(matrix_file);
-        // Leer la matriz B (aquí estamos asumiendo que se usa la misma matriz)
-        auto B = read_matrix(matrix_file);  
+        auto A = read_matrix(matrix_files_a[i]);
+        // Leer la matriz B
+        auto B = read_matrix(matrix_files_b[i]);
         
         // Obtener el tamaño de la matriz para la salida
         string matrix_size = get_matrix_size(A);
@@ -116,8 +117,8 @@ void execute_algorithms(const vector<string> &matrix_files, const string &tiempo
 }
 
 int main() {
-    // Rutas de las matrices
-    vector<string> matrix_files = {
+    // Rutas de las matrices A
+    vector<string> matrix_files_a = {
         "C:\\Users\\ljane\\Downloads\\Proyecto-Analisis-Algoritmos\\matriz_a_2x2.txt",
         "C:\\Users\\ljane\\Downloads\\Proyecto-Analisis-Algoritmos\\matriz_a_4x4.txt",
         "C:\\Users\\ljane\\Downloads\\Proyecto-Analisis-Algoritmos\\matriz_a_8x8.txt",
@@ -128,10 +129,22 @@ int main() {
         "C:\\Users\\ljane\\Downloads\\Proyecto-Analisis-Algoritmos\\matriz_a_256x256.txt"
     };
 
+    // Rutas de las matrices B
+    vector<string> matrix_files_b = {
+        "C:\\Users\\ljane\\Downloads\\Proyecto-Analisis-Algoritmos\\matriz_b_2x2.txt",
+        "C:\\Users\\ljane\\Downloads\\Proyecto-Analisis-Algoritmos\\matriz_b_4x4.txt",
+        "C:\\Users\\ljane\\Downloads\\Proyecto-Analisis-Algoritmos\\matriz_b_8x8.txt",
+        "C:\\Users\\ljane\\Downloads\\Proyecto-Analisis-Algoritmos\\matriz_b_16x16.txt",
+        "C:\\Users\\ljane\\Downloads\\Proyecto-Analisis-Algoritmos\\matriz_b_32x32.txt",
+        "C:\\Users\\ljane\\Downloads\\Proyecto-Analisis-Algoritmos\\matriz_b_64x64.txt",
+        "C:\\Users\\ljane\\Downloads\\Proyecto-Analisis-Algoritmos\\matriz_b_128x128.txt",
+        "C:\\Users\\ljane\\Downloads\\Proyecto-Analisis-Algoritmos\\matriz_b_256x256.txt"
+    };
+
     string tiempos_path = "C:\\Users\\ljane\\Downloads\\Proyecto-Analisis-Algoritmos\\guardadoTiempos\\tiempos_ejecucion_c.txt";
 
-    // Ejecutar algoritmos para cada matriz
-    execute_algorithms(matrix_files, tiempos_path);
+    // Ejecutar algoritmos para cada par de matrices
+    execute_algorithms(matrix_files_a, matrix_files_b, tiempos_path);
 
     return 0;
 }

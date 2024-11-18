@@ -1,22 +1,46 @@
 import numpy as np
 
 def winograd_scaled(A, B):
-    n = A.shape[0]
-    C = np.zeros((n, n), dtype=np.int64)  # Usar np.int64 para evitar desbordamiento
-    row_factor = np.zeros(n, dtype=np.int64)  # Asegurarse de que row_factor sea np.int64
-    col_factor = np.zeros(n, dtype=np.int64)  # Asegurarse de que col_factor sea np.int64
-
-    # Calcular los factores de fila
-    for i in range(n):
-        row_factor[i] = sum(A[i][j] * B[j][0] for j in range(n))  # Cambiar n-1 a n
-
-    # Calcular los factores de columna
-    for j in range(n):
-        col_factor[j] = sum(A[0][i] * B[i][j] for i in range(n))  # Cambiar n-1 a n
-
-    # Multiplicar los factores para obtener la matriz C
-    for i in range(n):
-        for j in range(n):
-            C[i][j] = row_factor[i] * col_factor[j]
-
-    return C
+    """
+    Implementación correcta del algoritmo Winograd Scaled
+    """
+    m, n = A.shape
+    r = B.shape[1]
+    
+    # Normalizar la escala de los elementos para evitar desbordamiento
+    scale_A = np.max(np.abs(A))
+    scale_B = np.max(np.abs(B))
+    
+    if scale_A > 0:
+        A = A / scale_A
+    if scale_B > 0:
+        B = B / scale_B
+    
+    # Precálculo de productos por fila
+    row_factor = np.zeros(m)
+    for i in range(m):
+        for j in range(n//2):
+            row_factor[i] += A[i,2*j] * A[i,2*j+1]
+    
+    # Precálculo de productos por columna
+    col_factor = np.zeros(r)
+    for i in range(r):
+        for j in range(n//2):
+            col_factor[i] += B[2*j,i] * B[2*j+1,i]
+    
+    # Cálculo de la matriz resultante
+    C = np.zeros((m, r))
+    for i in range(m):
+        for j in range(r):
+            C[i,j] = -row_factor[i] - col_factor[j]
+            for k in range(n//2):
+                C[i,j] += (A[i,2*k] + B[2*k+1,j]) * (A[i,2*k+1] + B[2*k,j])
+    
+    # Ajuste para dimensión impar
+    if n % 2 == 1:
+        for i in range(m):
+            for j in range(r):
+                C[i,j] += A[i,n-1] * B[n-1,j]
+    
+    # Reajustar la escala
+    return C * scale_A * scale_B

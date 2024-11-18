@@ -1,38 +1,37 @@
 import numpy as np
 
 def strassen_naiv(A, B):
-    if A.shape[0] == 1:
-        return A * B
-
-    mid = A.shape[0] // 2
-
+    n = len(A)
+    
+    if n <= 2:  # Base case
+        return np.dot(A, B)
+    
+    # Partition matrices into submatrices
+    mid = n // 2
     A11 = A[:mid, :mid]
     A12 = A[:mid, mid:]
     A21 = A[mid:, :mid]
     A22 = A[mid:, mid:]
-
     B11 = B[:mid, :mid]
     B12 = B[:mid, mid:]
     B21 = B[mid:, :mid]
     B22 = B[mid:, mid:]
-
-    M1 = strassen_naiv(A11 + A22, B11 + B22)
-    M2 = strassen_naiv(A21 + A22, B11)
-    M3 = strassen_naiv(A11, B12 - B22)
-    M4 = strassen_naiv(A22, B21 - B11)
-    M5 = strassen_naiv(A11 + A12, B22)
-    M6 = strassen_naiv(A21 - A11, B11 + B12)
-    M7 = strassen_naiv(A12 - A22, B21 + B22)
-
-    C11 = M1 + M4 - M5 + M7
-    C12 = M3 + M5
-    C21 = M2 + M4
-    C22 = M1 - M2 + M3 + M6
-
-    C = np.zeros(A.shape, dtype=int)
-    C[:mid, :mid] = C11
-    C[:mid, mid:] = C12
-    C[mid:, :mid] = C21
-    C[mid:, mid:] = C22
-
+    
+    # Recursive multiplication
+    P1 = strassen_naiv(A11, B12 - B22)
+    P2 = strassen_naiv(A11 + A12, B22)
+    P3 = strassen_naiv(A21 + A22, B11)
+    P4 = strassen_naiv(A22, B21 - B11)
+    P5 = strassen_naiv(A11 + A22, B11 + B22)
+    P6 = strassen_naiv(A12 - A22, B21 + B22)
+    P7 = strassen_naiv(A11 - A21, B11 + B12)
+    
+    # Combine results to form C
+    C11 = P5 + P4 - P2 + P6
+    C12 = P1 + P2
+    C21 = P3 + P4
+    C22 = P5 + P1 - P3 - P7
+    
+    # Combine quadrants to form C
+    C = np.vstack((np.hstack((C11, C12)), np.hstack((C21, C22))))
     return C
